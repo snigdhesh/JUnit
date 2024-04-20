@@ -8,40 +8,23 @@ class DemoUtilsTest {
 
     DemoUtils demoUtils;
 
-    @BeforeAll
-    static void executeBeforeAll(){
-        System.out.println("Excecuted @BeforeAll");
-    }
-
-    @AfterAll
-    static void executeAfterAll(){
-        System.out.println("Excecuted @AfterAll");
-    }
-
-
     @BeforeEach
     void setupDemoUtils(){
         demoUtils = new DemoUtils();
-        System.out.println("Excecuted @BeforeEach");
-    }
-
-    @AfterEach
-    void cleanResources(){
-        System.out.println("Excecuted @AfterEach");
     }
 
 
     @Test
+    @DisplayName("Check whether value is equal or not")
     void testEqualsAndNotEquals(){
-        System.out.println("Running test testEqualsAndNotEquals");
         int expected = 6;
         int actual = demoUtils.add(1,5);
         assertEquals(expected,actual,"Unexpected result");
     }
 
     @Test
+    @DisplayName("Check whether value is null or not")
     void testNullAndNotNull(){
-        System.out.println("Running test testNullAndNotNull");
         String str1 = null;
         String str2 = "luv2code";
         assertNull(demoUtils.checkNull(str1),"Object should be null");
