@@ -4,6 +4,15 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * DisplayNameGenerator has types
+ * Simple : Just takes method name without parenthesis
+ * ReplaceUnderscores : Replaces underscores in method name, then takes method name without parenthesis
+ * IndicativeSentences: Takes className, and methodName with parenthesis
+ *
+ */
+@DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
+
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -15,7 +24,6 @@ class DemoUtilsTest {
 
 
     @Test
-    @DisplayName("Check whether value is equal or not")
     void testEqualsAndNotEquals(){
         int expected = 6;
         int actual = demoUtils.add(1,5);
@@ -23,7 +31,6 @@ class DemoUtilsTest {
     }
 
     @Test
-    @DisplayName("Check whether value is null or not")
     void testNullAndNotNull(){
         String str1 = null;
         String str2 = "luv2code";
