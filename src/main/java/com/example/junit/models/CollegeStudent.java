@@ -1,19 +1,22 @@
 package com.example.junit.models;
 
+import com.example.junit.services.Student;
 import lombok.Data;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class CollegeStudent implements Student{
+@Scope("prototype")
+public class CollegeStudent implements Student {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    private StudentGrades studentGrades;
+    private StudentGrades grades;
 
     @Override
     public String studentInformation() {
-        return getFullName() + " " + getEmailAddress() + " " + studentGrades.getMathGrades();
+        return getFullName() + " " + getEmailAddress() + " " + grades.getMathGrades();
     }
 
     @Override

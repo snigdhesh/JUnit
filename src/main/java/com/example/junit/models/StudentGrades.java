@@ -10,6 +10,14 @@ import java.util.List;
 public class StudentGrades {
     List<Double> mathGrades;
 
+    public double addGrades(List<Double> grades){
+        return grades.stream().mapToDouble(Double::doubleValue).sum();
+    }
+
+    public boolean isStudentPassed(int total){
+        return total >= 200;
+    }
+
     public String toString(){
         return mathGrades.toString();
     }

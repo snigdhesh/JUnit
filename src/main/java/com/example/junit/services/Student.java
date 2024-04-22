@@ -1,4 +1,4 @@
-package com.example.junit.models;
+package com.example.junit.services;
 
 public interface Student {
     String studentInformation();
