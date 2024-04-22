@@ -1,5 +1,6 @@
-package org.example;
+package org.example.junitdemo;
 
+import org.example.tdd.DemoUtils;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 @DisplayNameGeneration(DisplayNameGenerator.IndicativeSentences.class)
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DemoUtilsTest {
 
     DemoUtils demoUtils;
@@ -24,6 +25,7 @@ class DemoUtilsTest {
 
 
     @Test
+    @Order(2)
     void testEqualsAndNotEquals(){
         int expected = 6;
         int actual = demoUtils.add(1,5);
@@ -31,6 +33,7 @@ class DemoUtilsTest {
     }
 
     @Test
+    @Order(1)
     void testNullAndNotNull(){
         String str1 = null;
         String str2 = "luv2code";
