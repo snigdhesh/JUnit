@@ -13,7 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.RequestBuilder;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -73,7 +75,9 @@ public class StudentControllerTest {
 
     @Test
     public void getStudentsTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/students"))
+        RequestBuilder requestBuilder = get("/students");
+
+        mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(2)))
                 .andReturn();
