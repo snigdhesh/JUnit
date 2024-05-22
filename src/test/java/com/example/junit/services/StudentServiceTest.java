@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +49,14 @@ public class StudentServiceTest {
         assertFalse(studentService.isStudentNull(34));
     }
 
+    //@BeforeEach will execute first, then @Sql
+    @Sql("/insertdata.sql")
     @Test
     public void getAllStudentsFromDBTest(){
         Iterable<Student> students = studentService.getStudents();
         List<Student> studentList = new ArrayList<>();
         students.forEach(student -> studentList.add(student));
-        assertEquals(1, studentList.size());
+        assertEquals(5, studentList.size());
     }
 
     @AfterEach
