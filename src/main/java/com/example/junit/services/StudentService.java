@@ -28,4 +28,8 @@ public class StudentService {
     public void deleteStudent(int id) {
         studentRepository.deleteById(id);
     }
+
+    public Iterable<Student> getStudents() {
+        return studentRepository.findAll();
+    }
 }

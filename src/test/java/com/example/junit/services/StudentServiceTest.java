@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class StudentServiceTest {
@@ -45,6 +46,14 @@ public class StudentServiceTest {
     public void studentNullCheck(){
         assertTrue(studentService.isStudentNull(1));
         assertFalse(studentService.isStudentNull(34));
+    }
+
+    @Test
+    public void getAllStudentsFromDBTest(){
+        Iterable<Student> students = studentService.getStudents();
+        List<Student> studentList = new ArrayList<>();
+        students.forEach(student -> studentList.add(student));
+        assertEquals(1, studentList.size());
     }
 
     @AfterEach
