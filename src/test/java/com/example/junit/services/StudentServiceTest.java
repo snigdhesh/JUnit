@@ -29,13 +29,19 @@ public class StudentServiceTest {
     private JdbcTemplate jdbcTemplate;
 
     @BeforeEach
-    public void createTestRecord(){
+    public void createTestRecord() {
         String query = "INSERT INTO STUDENT (ID, FIRSTNAME, LASTNAME, EMAIL) VALUES (1, 'ERIC', 'ROBY', 'ERIC@GMAIL.COM')";
         jdbcTemplate.execute(query);
     }
 
+    @AfterEach
+    public void deleteTestRecords() {
+        String query = "DELETE FROM STUDENT";
+        jdbcTemplate.execute(query);
+    }
+
     @Test
-    public void deleteStudentTest(){
+    public void deleteStudentTest() {
         Optional<Student> student = studentRepository.findById(1);
         assertTrue(student.isPresent(), "Student is present");
         studentService.deleteStudent(1);
@@ -44,7 +50,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void studentNullCheck(){
+    public void studentNullCheck() {
         assertTrue(studentService.isStudentNull(1));
         assertFalse(studentService.isStudentNull(34));
     }
@@ -52,16 +58,11 @@ public class StudentServiceTest {
     //@BeforeEach will execute first, then @Sql
     @Sql("/insertdata.sql")
     @Test
-    public void getAllStudentsFromDBTest(){
+    public void getAllStudentsFromDBTest() {
         Iterable<Student> students = studentService.getStudents();
         List<Student> studentList = new ArrayList<>();
         students.forEach(student -> studentList.add(student));
         assertEquals(5, studentList.size());
     }
 
-    @AfterEach
-    public void deleteTestRecords(){
-        String query = "DELETE FROM STUDENT";
-        jdbcTemplate.execute(query);
-    }
 }
