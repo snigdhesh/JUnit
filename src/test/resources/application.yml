@@ -1,0 +1,15 @@
+#H2 database properties
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: root
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop #Drop existing tables and create new tables. This value is commonly used for integration testing
+  h2:
+    console:
+      enabled: true
