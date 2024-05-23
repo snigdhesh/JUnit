@@ -32,4 +32,12 @@ public class StudentService {
     public Iterable<Student> getStudents() {
         return studentRepository.findAll();
     }
+
+    public Student createStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    public Student getUserByEmail(String email) {
+        return studentRepository.findByEmail(email);
+    }
 }
